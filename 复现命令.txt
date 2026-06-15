@@ -2,16 +2,12 @@
 
 Set-Location -LiteralPath "D:\BiographicalNotes-Jekyll-Final"
 
-# 推荐：一键启动并等待站点就绪
-.\start-jekyll.ps1
+# 启动 Jekyll 服务（推荐，使用 Docker）
+# 首次启动可能会安装 Ruby 依赖，等日志出现 "Server running" 后再访问浏览器。
+docker run --rm -p 4000:4000 -v "D:\BiographicalNotes-Jekyll-Final:/srv/jekyll" -w /srv/jekyll jekyll/jekyll:4.2.2 jekyll serve --host 0.0.0.0 --port 4000
 
-# 检查 Docker、容器状态和示例页面
-.\check-jekyll.ps1
-
-# 手动启动 / 查看日志 / 停止
-docker compose up -d
-docker compose logs -f jekyll
-docker compose down
+# 另开 PowerShell 检查服务
+(Invoke-WebRequest "http://127.0.0.1:4000/" -UseBasicParsing).StatusCode
 
 # 打开截图页面
 Start-Process "http://127.0.0.1:4000/"
