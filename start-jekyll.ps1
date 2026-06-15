@@ -107,15 +107,15 @@ function Get-ListenerRows {
 
     $rows = @(
         foreach ($listener in $listeners) {
-        $process = Get-Process -Id $listener.OwningProcess -ErrorAction SilentlyContinue
+            $process = Get-Process -Id $listener.OwningProcess -ErrorAction SilentlyContinue
 
-        [pscustomobject]@{
-            LocalAddress = $listener.LocalAddress
-            LocalPort = $listener.LocalPort
-            ProcessId = $listener.OwningProcess
-            ProcessName = if ($process) { $process.ProcessName } else { "Unknown" }
-            Path = if ($process) { $process.Path } else { "" }
-        }
+            [pscustomobject]@{
+                LocalAddress = $listener.LocalAddress
+                LocalPort    = $listener.LocalPort
+                ProcessId    = $listener.OwningProcess
+                ProcessName  = if ($process) { $process.ProcessName } else { "Unknown" }
+                Path         = if ($process) { $process.Path } else { "" }
+            }
         }
     )
 

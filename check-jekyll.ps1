@@ -1,5 +1,4 @@
 #requires -Version 5.1
-
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
 $ProgressPreference = "SilentlyContinue"
@@ -16,12 +15,10 @@ function Assert-DockerAvailable {
     if (-not (Get-Command docker -ErrorAction SilentlyContinue)) {
         throw "Docker CLI is not available in PATH. Install Docker Desktop first."
     }
-
     & docker version | Out-Null
     if ($LASTEXITCODE -ne 0) {
         throw "Docker Desktop is not running or the Docker daemon is unavailable."
     }
-
     & docker compose version | Out-Null
     if ($LASTEXITCODE -ne 0) {
         throw "docker compose is unavailable."
@@ -58,11 +55,9 @@ try {
         } catch {
             throw "Health check failed for $url. $($_.Exception.Message)"
         }
-
         if ($response.StatusCode -ne 200) {
             throw "Health check failed for $url. Expected 200, got $($response.StatusCode)."
         }
-
         Write-Host "  [200] $url"
     }
 
