@@ -2,21 +2,18 @@
 _site/
 .jekyll-cache/
 .sass-cache/
-
 # Local Ruby/Bundler state
 .bundle/
 vendor/bundle/
 vendor/cache/
 vendor/gems/
 vendor/ruby/
-
 # OS and editor noise
 .DS_Store
 Thumbs.db
 desktop.ini
 .idea/
 .vscode/
-
 # Local logs and temporary files
 *.log
 *.tmp
